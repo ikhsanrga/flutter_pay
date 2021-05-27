@@ -88,7 +88,7 @@ class FlutterPay {
         return paymentToken;
       } else {
         print("Payment token: null");
-        return "";
+        return null;
       }
     } on PlatformException catch (error) {
       if (error.code == "userCancelledError") {
