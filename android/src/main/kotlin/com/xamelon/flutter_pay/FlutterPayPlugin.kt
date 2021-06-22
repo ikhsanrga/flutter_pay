@@ -228,10 +228,10 @@ class FlutterPayPlugin : FlutterPlugin, MethodCallHandler, PluginRegistry.Activi
                             print("Tortik:  ${e.message}\n")
                         }
                     }
-            print('paymentDataRequest != null');
+            print("paymentDataRequest != null");
             AutoResolveHelper.resolveTask(task, this.activity, LOAD_PAYMENT_DATA_REQUEST_CODE)
         }else {
-            print('paymentDataRequest === null');
+            print("paymentDataRequest === null");
         }
 
     }
@@ -332,22 +332,22 @@ class FlutterPayPlugin : FlutterPlugin, MethodCallHandler, PluginRegistry.Activi
     }
 
     override fun onAttachedToActivity(binding: ActivityPluginBinding) {
-        print('onAttachedToActivity');
+        print("onAttachedToActivity");
         this.activity = binding.activity
         binding.addActivityResultListener(this)
         createPaymentsClient()
     }
 
     override fun onDetachedFromActivity() {
-        print('onDetachedFromActivity');
+        print("onDetachedFromActivity");
     }
 
     override fun onDetachedFromActivityForConfigChanges() {
-        print('onDetachedFromActivityForConfigChanges');
+        print("onDetachedFromActivityForConfigChanges");
     }
 
     override fun onReattachedToActivityForConfigChanges(binding: ActivityPluginBinding) {
-        print('onReattachedToActivityForConfigChanges');
+        print("onReattachedToActivityForConfigChanges");
         this.activity = binding.activity
         binding.addActivityResultListener(this)
         createPaymentsClient()
