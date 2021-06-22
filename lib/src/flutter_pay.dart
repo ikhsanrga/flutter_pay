@@ -77,6 +77,7 @@ class FlutterPay {
 
     try {
       var response = await _channel.invokeMethod('requestPayment', params);
+      print('FPDEBUG: requestPayment invoke res: ${response.toString()}');
       var payResponse = Map<String, String>.from(response);
       if (payResponse == null) {
         throw FlutterPayError(description: "Pay response cannot be parsed");
@@ -91,6 +92,7 @@ class FlutterPay {
         return null;
       }
     } on PlatformException catch (error) {
+      print('FPDEBUG: PlatformException ${error.toString()}');
       if (error.code == "userCancelledError") {
         print(error.message);
         return "";

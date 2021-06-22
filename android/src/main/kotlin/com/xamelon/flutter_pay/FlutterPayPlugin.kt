@@ -228,7 +228,10 @@ class FlutterPayPlugin : FlutterPlugin, MethodCallHandler, PluginRegistry.Activi
                             print("Tortik:  ${e.message}\n")
                         }
                     }
+            print('paymentDataRequest != null');
             AutoResolveHelper.resolveTask(task, this.activity, LOAD_PAYMENT_DATA_REQUEST_CODE)
+        }else {
+            print('paymentDataRequest === null');
         }
 
     }
@@ -281,9 +284,12 @@ class FlutterPayPlugin : FlutterPlugin, MethodCallHandler, PluginRegistry.Activi
         }
     }
 
-    override fun onDetachedFromEngine(@NonNull binding: FlutterPlugin.FlutterPluginBinding) {}
+    override fun onDetachedFromEngine(@NonNull binding: FlutterPlugin.FlutterPluginBinding) {
+        print("onDetachedFromEngine");
+    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?): Boolean {
+        print("requestCode::: $requestCode");
         if (requestCode == LOAD_PAYMENT_DATA_REQUEST_CODE) {
             print("Result code: $resultCode\n")
             if (resultCode == Activity.RESULT_OK) {
@@ -319,21 +325,29 @@ class FlutterPayPlugin : FlutterPlugin, MethodCallHandler, PluginRegistry.Activi
             }
 
             this.lastResult = null
+        }else {
+            print("requestCode>>: $requestCode");
         }
         return false
     }
 
     override fun onAttachedToActivity(binding: ActivityPluginBinding) {
+        print('onAttachedToActivity');
         this.activity = binding.activity
         binding.addActivityResultListener(this)
         createPaymentsClient()
     }
 
-    override fun onDetachedFromActivity() {}
+    override fun onDetachedFromActivity() {
+        print('onDetachedFromActivity');
+    }
 
-    override fun onDetachedFromActivityForConfigChanges() {}
+    override fun onDetachedFromActivityForConfigChanges() {
+        print('onDetachedFromActivityForConfigChanges');
+    }
 
     override fun onReattachedToActivityForConfigChanges(binding: ActivityPluginBinding) {
+        print('onReattachedToActivityForConfigChanges');
         this.activity = binding.activity
         binding.addActivityResultListener(this)
         createPaymentsClient()
